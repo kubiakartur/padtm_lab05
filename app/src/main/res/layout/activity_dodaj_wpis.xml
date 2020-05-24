@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.moya.padtm_lab04.DodajWpis">
+    tools:context="com.example.moya.padtm_lab04.DodajWpis"
+    tools:layout_editor_absoluteY="81dp">
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Nazwa"
         android:inputType="textPersonName"
-        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/gatunek"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,8 +25,56 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginBottom="73dp"
         android:onClick="wyslij"
+        android:text="Dodaj"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/opis"
+        app:layout_constraintTop_toBottomOf="@+id/opis" />
+
+    <Spinner
+        android:id="@+id/gatunek"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/kolor"
         app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintStart_toStartOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/editText"></Spinner>
+
+    <EditText
+        android:id="@+id/kolor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:hint="Kolor"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/wielkosc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gatunek" />
+
+    <EditText
+        android:id="@+id/opis"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="62dp"
+        android:ems="10"
+        android:hint="Opis"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/wielkosc"
+        app:layout_constraintTop_toBottomOf="@+id/wielkosc" />
+
+    <EditText
+        android:id="@+id/wielkosc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Wielkość"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/opis"
+        app:layout_constraintStart_toStartOf="@+id/kolor"
+        app:layout_constraintTop_toBottomOf="@+id/kolor" />
+
 </android.support.constraint.ConstraintLayout>
