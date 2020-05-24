@@ -10,17 +10,50 @@ import android.widget.Spinner;
 
 public class DodajWpis extends AppCompatActivity {
 
+    private int modyfi_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodaj_wpis);
 
-        ArrayAdapter gatunki = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, new String[] { "Pies", "Kot", "Rybki"});
+        ArrayAdapter gatunki = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, new String[] { "Pies", "Kot", "Rybki" });
         Spinner gatunek = (Spinner) findViewById(R.id.gatunek);
         gatunek.setAdapter(gatunki);
+
+        Bundle extras = getIntent().getExtras();
+        try {
+            if(extras.getSerializable("element") != null) {
+                Animal zwierz = (Animal) extras.getSerializable("element");
+                EditText kolor = (EditText) findViewById(R.id.kolor);
+                EditText wielkosc = (EditText) findViewById(R.id.wielkosc);
+                EditText opis = (EditText) findViewById(R.id.opis);
+                Spinner _gatunek = (Spinner) findViewById(R.id.gatunek);
+
+                switch(zwierz.getGatunek()){
+                    case "Pies":
+                        _gatunek.setSelection(0);
+                        break;
+                    case "Kot":
+                        _gatunek.setSelection(1);
+                        break;
+                    case "Rybki":
+                        _gatunek.setSelection(2);
+                        break;
+                }
+
+                kolor.setText(zwierz.getKolor());
+                wielkosc.setText(Float.toString(zwierz.getWielkosc()));
+                opis.setText(zwierz.getOpis());
+
+                this.modyfi_id = zwierz.getId();
+            }
+        } catch (Exception ex) {
+            this.modyfi_id = 0;
+        }
     }
 
-    public void wyslij(View view){
+    public void wyslij(View view) {
         // EditText kontrolka = (EditText)findViewById(R.id.editText); // nazwa
         // String pole = kontrolka.getText().toString();
         EditText kolor = (EditText) findViewById(R.id.kolor);
@@ -29,6 +62,7 @@ public class DodajWpis extends AppCompatActivity {
         Spinner gatunek = (Spinner) findViewById(R.id.gatunek);
 
         Animal zwierze = new Animal(gatunek.getSelectedItem().toString(), kolor.getText().toString(), Float.valueOf(wielkosc.getText().toString()), opis.getText().toString());
+        zwierze.setId(this.modyfi_id);
         Intent intencja = new Intent();
         // intencja.putExtra("wpis", pole);
         intencja.putExtra("nowy", zwierze);
