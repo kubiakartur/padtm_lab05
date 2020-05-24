@@ -26,10 +26,4 @@ public class MainActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.listView);
         listview.setAdapter(this.adapter);
     }
-
-
-
-
-
-
 }
