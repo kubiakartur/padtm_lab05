@@ -1,3 +1,5 @@
+package com.example.moya.padtm_lab04;
+
 import java.io.Serializable;
 
 /**

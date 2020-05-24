@@ -1,3 +1,5 @@
+package com.example.moya.padtm_lab04;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -83,6 +85,4 @@ public class MySQLite extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("Select * from animals", null);
     }
-
-
 }
