@@ -62,7 +62,6 @@ public class MySQLite extends SQLiteOpenHelper {
 
         int i = db.update("animals", values, "_id = ?", new String[] { String.valueOf(zwierz.getId())});
         db.close();
-
         return i;
     }
 
